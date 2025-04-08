@@ -62,4 +62,45 @@ document.addEventListener("DOMContentLoaded", function() {
     // Початковий виклик зміни зображення
     changeImage('default');
     scheduleNextChange();
+
+    // Функції для завантаження відповідного тексту на основі мови системи користувача
+    function getLanguage() {
+        return navigator.language || navigator.userLanguage;
+    }
+
+    function loadLanguageFile(language) {
+        let langFile = 'locales/uk.json'; // За замовчуванням українська
+        if (language.startsWith('ru')) {
+            langFile = 'locales/ru.json';
+        } else if (language.startsWith('en')) {
+            langFile = 'locales/en.json';
+        }
+
+        fetch(langFile)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('title').innerText = data.title;
+                document.getElementById('meta_description').setAttribute('content', data.meta_description);
+                document.getElementById('header_logo_alt').setAttribute('alt', data.header_logo_alt);
+                document.getElementById('header_title').innerText = data.header_title;
+                document.getElementById('about_title').innerText = data.about_title;
+                document.getElementById('about_description').innerText = data.about_description;
+                document.getElementById('features_title').innerText = data.features_title;
+                document.getElementById('feature_expenses').innerText = data.feature_expenses;
+                document.getElementById('feature_budget').innerText = data.feature_budget;
+                document.getElementById('feature_planning').innerText = data.feature_planning;
+                document.getElementById('feature_debts').innerText = data.feature_debts;
+                document.getElementById('feature_tasks').innerText = data.feature_tasks;
+                document.getElementById('details_title').innerText = data.details_title;
+                document.getElementById('contact_title').innerText = data.contact_title;
+                document.getElementById('contact_details').innerText = data.contact_details;
+                document.getElementById('phone_image_alt').setAttribute('alt', data.phone_image_alt);
+                document.getElementById('download_button_text').innerText = data.download_button_text;
+                document.getElementById('footer_text').innerText = data.footer_text;
+            })
+            .catch(error => console.error('Помилка завантаження файлу мови:', error));
+    }
+
+    const userLanguage = getLanguage();
+    loadLanguageFile(userLanguage);
 });
