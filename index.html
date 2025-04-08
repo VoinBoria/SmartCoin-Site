@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartCoin - Додаток для управління фінансами</title>
-    <meta name="description" content="SmartCoin - універсальний додаток для управління фінансами, що допоможе вам обліковувати доходи та витрати, планувати бюджет, контролювати борги та нагадування.">
+    <title id="title">SmartCoin - Додаток для управління фінансами</title>
+    <meta name="description" id="meta_description" content="SmartCoin - універсальний додаток для управління фінансами, що допоможе вам обліковувати доходи та витрати, планувати бюджет, контролювати борги та нагадування.">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
-        <img src="images/ic_launchers_foreground.webp" alt="Логотип додатку SmartCoin" class="logo">
-        <h1>SmartCoin - Управління фінансами</h1>
+        <img src="images/ic_launchers_foreground.webp" alt="Логотип додатку SmartCoin" class="logo" id="header_logo_alt">
+        <h1 id="header_title">SmartCoin - Управління фінансами</h1>
     </header>
     <main>
         <div class="content">
             <section id="about">
-                <h2>Про додаток</h2>
-                <p>SmartCoin - це універсальний додаток для особистих фінансів, який допоможе вам контролювати витрати, доходи, планувати бюджет та досягати фінансових цілей.</p>
+                <h2 id="about_title">Про додаток</h2>
+                <p id="about_description">SmartCoin - це універсальний додаток для особистих фінансів, який допоможе вам контролювати витрати, доходи, планувати бюджет та досягати фінансових цілей.</p>
             </section>
             
             <section id="features">
-                <h2>Функції додатку</h2>
+                <h2 id="features_title">Функції додатку</h2>
                 <ul>
                     <li id="expenses">Облік витрат і доходів з категоріями</li>
                     <li id="budget">Планування бюджету та фінансових цілей</li>
@@ -31,28 +31,28 @@
             </section>
 
             <section id="details">
-                <h2>Особливості SmartCoin</h2>
+                <h2 id="details_title">Особливості SmartCoin</h2>
                 <div class="video-container">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/7y2D2Oy9aFw?si=wzvUpMyheEN-EZMT" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </section>
             
             <section id="contact">
-                <h2>Контактна інформація</h2>
-                <p>З пропозиціями та рекомендаціями звертайтеся на пошту: sacredking64@gmail.com</p>
+                <h2 id="contact_title">Контактна інформація</h2>
+                <p id="contact_details">З пропозиціями та рекомендаціями звертайтеся на пошту: sacredking64@gmail.com</p>
             </section>
         </div>
         <div class="phone-container">
             <img src="images/phone.png" alt="Інтерфейс додатку SmartCoin на телефоні" class="phone-image" id="phoneImage">
             <div class="download-button">
                 <a href="https://play.google.com/store/apps/details?id=com.serhio.homeaccountingapp&pli=1" class="btn" target="_blank">
-                    <img src="images/playmarket.png" alt="Play Market" class="icon"> Завантажити з Play Market
+                    <img src="images/playmarket.png" alt="Play Market" class="icon"> <span id="download_button_text">Завантажити з Play Market</span>
                 </a>
             </div>
         </div>
     </main>
     <footer>
-        <p>&copy; 2025 SmartCoin. Всі права захищені.</p>
+        <p id="footer_text">&copy; 2025 SmartCoin. Всі права захищені.</p>
     </footer>
     <script src="js/main.js"></script>
 </body>
