@@ -4,6 +4,7 @@ body {
     padding: 0;
     background: linear-gradient(to bottom right, #0000FF, #8A2BE2);
     color: white;
+    overflow-y: scroll; /* Додаємо вертикальну прокрутку */
 }
 
 header {
@@ -13,6 +14,10 @@ header {
     background-color: rgba(0, 0, 0, 0.5);
     padding: 1em 0;
     text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
 header h1 {
@@ -37,7 +42,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 1em 5%;
+    padding: 6em 5%; /* Додаємо відступ для фіксованого хедера */
     min-height: 80vh;
 }
 
@@ -50,6 +55,8 @@ main {
     flex-direction: column;
     align-items: center;
     margin-left: 2em;
+    position: sticky;
+    top: 6em; /* Відступ від верху для фіксованого положення */
 }
 
 h1, h2 {
@@ -64,7 +71,7 @@ h1:hover, h2:hover {
 }
 
 section {
-    margin-bottom: 0em;
+    margin-bottom: 2em;
     transition: transform 0.3s;
 }
 
@@ -127,11 +134,19 @@ footer {
     border-radius: 5px;
     font-size: 1em;
     transition: background-color 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
 }
 
 .download-button .btn:hover {
     background-color: #45a049;
     transform: scale(1.05);
+}
+
+.download-button .btn .icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5em;
 }
 
 @media (min-width: 1200px) {
