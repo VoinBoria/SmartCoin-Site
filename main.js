@@ -41,27 +41,54 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('expenses').addEventListener('click', () => {
         isManualChange = true;
         changeImage('expenses');
+        showFeatureImage('expenses');
     });
     document.getElementById('budget').addEventListener('click', () => {
         isManualChange = true;
         changeImage('budget');
+        showFeatureImage('budget');
     });
     document.getElementById('planning').addEventListener('click', () => {
         isManualChange = true;
         changeImage('planning');
+        showFeatureImage('planning');
     });
     document.getElementById('debts').addEventListener('click', () => {
         isManualChange = true;
         changeImage('debts');
+        showFeatureImage('debts');
     });
     document.getElementById('tasks').addEventListener('click', () => {
         isManualChange = true;
         changeImage('tasks');
+        showFeatureImage('tasks');
     });
 
     // Початковий виклик зміни зображення
     changeImage('default');
     scheduleNextChange();
+
+    // Функція для відображення зображення під кнопкою функції
+    function showFeatureImage(featureId) {
+        const featureList = document.getElementById('features-list');
+        const imageContainer = document.getElementById('feature-image-container');
+        
+        // Очищуємо контейнер
+        imageContainer.innerHTML = '';
+
+        // Створюємо нове зображення
+        const image = document.createElement('img');
+        image.src = images[featureId];
+        image.alt = 'Phone image';
+        imageContainer.appendChild(image);
+
+        // Переміщуємо контейнер зображення під відповідну кнопку
+        const featureButton = document.getElementById(featureId);
+        featureList.insertBefore(imageContainer, featureButton.nextSibling);
+
+        // Переключаємо клас "show" для анімації
+        imageContainer.classList.add('show');
+    }
 
     // Функції для завантаження відповідного тексту на основі мови системи користувача
     function getLanguage() {
@@ -86,11 +113,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById('about_title').innerText = data.about_title;
                 document.getElementById('about_description').innerText = data.about_description;
                 document.getElementById('features_title').innerText = data.features_title;
-                document.getElementById('feature_expenses').innerText = data.feature_expenses;
-                document.getElementById('feature_budget').innerText = data.feature_budget;
-                document.getElementById('feature_planning').innerText = data.feature_planning;
-                document.getElementById('feature_debts').innerText = data.feature_debts;
-                document.getElementById('feature_tasks').innerText = data.feature_tasks;
+                document.getElementById('expenses').innerText = data.feature_expenses;
+                document.getElementById('budget').innerText = data.feature_budget;
+                document.getElementById('planning').innerText = data.feature_planning;
+                document.getElementById('debts').innerText = data.feature_debts;
+                document.getElementById('tasks').innerText = data.feature_tasks;
                 document.getElementById('details_title').innerText = data.details_title;
                 document.getElementById('contact_title').innerText = data.contact_title;
                 document.getElementById('contact_details').innerText = data.contact_details;
