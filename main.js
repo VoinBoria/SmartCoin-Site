@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const imageKeys = Object.keys(images);
     let isManualChange = false;
     let autoChangeTimeout;
+    let lastFeatureId = null;
 
     function scheduleNextChange() {
         autoChangeTimeout = setTimeout(changeImageAutomatically, 5000); // Зміна зображення кожні 5 секунд
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(() => {
             phoneImage.src = images[imageKey] || images.default;
             phoneImage.classList.add('show');
-        }, 500); // Тривалість переходу повинна відповідати тривалості переходу CSS
+        }, 1000); // Довша тривалість переходу для плавнішої анімації
         if (!isManualChange) {
             scheduleNextChange();
         }
@@ -40,35 +41,45 @@ document.addEventListener("DOMContentLoaded", function() {
     // Додаємо обробники подій для елементів списку
     document.getElementById('expenses').addEventListener('click', () => {
         isManualChange = true;
-        changeImage('expenses');
-        showFeatureImage('expenses');
+        toggleFeatureImage('expenses');
     });
     document.getElementById('budget').addEventListener('click', () => {
         isManualChange = true;
-        changeImage('budget');
-        showFeatureImage('budget');
+        toggleFeatureImage('budget');
     });
     document.getElementById('planning').addEventListener('click', () => {
         isManualChange = true;
-        changeImage('planning');
-        showFeatureImage('planning');
+        toggleFeatureImage('planning');
     });
     document.getElementById('debts').addEventListener('click', () => {
         isManualChange = true;
-        changeImage('debts');
-        showFeatureImage('debts');
+        toggleFeatureImage('debts');
     });
     document.getElementById('tasks').addEventListener('click', () => {
         isManualChange = true;
-        changeImage('tasks');
-        showFeatureImage('tasks');
+        toggleFeatureImage('tasks');
     });
 
     // Початковий виклик зміни зображення
     changeImage('default');
     scheduleNextChange();
 
-    // Функція для відображення зображення під кнопкою функції
+    // Функція для відображення або сховання зображення під кнопкою функції
+    function toggleFeatureImage(featureId) {
+        const imageContainer = document.getElementById('feature-image-container');
+
+        if (lastFeatureId === featureId && imageContainer.classList.contains('show')) {
+            // Якщо натиснута та сама кнопка і зображення вже показане, сховати його
+            hideFeatureImage();
+            lastFeatureId = null;
+        } else {
+            // Інакше, показати нове зображення і змінити зображення на маленькому телефоні
+            lastFeatureId = featureId;
+            showFeatureImage(featureId);
+            changeImage(featureId);
+        }
+    }
+
     function showFeatureImage(featureId) {
         const featureList = document.getElementById('features-list');
         const imageContainer = document.getElementById('feature-image-container');
@@ -87,7 +98,16 @@ document.addEventListener("DOMContentLoaded", function() {
         featureList.insertBefore(imageContainer, featureButton.nextSibling);
 
         // Переключаємо клас "show" для анімації
-        imageContainer.classList.add('show');
+        setTimeout(() => {
+            imageContainer.classList.add('show');
+            imageContainer.classList.remove('hide');
+        }, 10);
+    }
+
+    function hideFeatureImage() {
+        const imageContainer = document.getElementById('feature-image-container');
+        imageContainer.classList.remove('show');
+        imageContainer.classList.add('hide');
     }
 
     // Функції для завантаження відповідного тексту на основі мови системи користувача
